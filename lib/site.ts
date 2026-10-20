@@ -10,7 +10,7 @@ export const site = {
   venmoPath: "/donate",
 };
 
-import { programHref, programs } from "@/lib/programs";
+import { philanthropyNavItems } from "@/lib/programs";
 
 export const nav = [
   { href: "/", label: "Home" },
@@ -19,25 +19,7 @@ export const nav = [
   { href: "/contact", label: "Contact" },
 ];
 
-/** Philanthropy dropdown order (matches legacy WordPress menu). */
-const philanthropyOrder = [
-  "winter-2022",
-  "winter-2021",
-  "summer-2020",
-  "spring-math-2020",
-  "bidadi-outreach",
-  "vijetha-outreach",
-  "coaching-donation",
-  "volleyball-cancer-fundraiser",
-  "digital-slate-outreach",
-  "computer-drive",
-  "educational-tablet-outreach",
-];
+export const philanthropyHub = { href: "/philanthropy", label: "Philanthropy" };
 
-export const philanthropyNav = [
-  { href: "/programs", label: "All programs" },
-  ...philanthropyOrder.map((slug) => {
-    const program = programs.find((p) => p.slug === slug)!;
-    return { href: programHref(program), label: program.title };
-  }),
-];
+/** All historical programs nested under Philanthropy in the menu. */
+export const philanthropyNav = philanthropyNavItems();

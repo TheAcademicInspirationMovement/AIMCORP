@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/impact",
     "/impact/bidadi",
     "/impact/vijetha",
-    "/programs",
+    "/philanthropy",
     ...programPaths,
     "/join",
     "/contact",

@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function ProgramPage({ params }: PageProps) {
+export default async function PhilanthropyProgramPage({ params }: PageProps) {
   const { slug } = await params;
   const program = getProgramBySlug(slug);
   if (!program) notFound();

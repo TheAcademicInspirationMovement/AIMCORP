@@ -4,20 +4,19 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import {
   programCategories,
-  programs,
   programHref,
   programsByCategory,
   type ProgramCategory,
 } from "@/lib/programs";
 
 export const metadata: Metadata = {
-  title: "Programs",
+  title: "Philanthropy",
   description: "Historical AIMCORP philanthropy programs, outreach, and fundraisers.",
 };
 
 const categoryOrder: ProgramCategory[] = ["seasonal", "outreach", "fundraiser"];
 
-export default function ProgramsPage() {
+export default function PhilanthropyPage() {
   return (
     <>
       <PageHero

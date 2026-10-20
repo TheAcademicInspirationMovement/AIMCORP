@@ -34,8 +34,8 @@ export function ProgramDetail({ program }: ProgramDetailProps) {
           </Link>
         ) : null}
         <p className="mt-10 text-sm text-muted">
-          <Link href="/programs" className="font-semibold text-blue hover:text-clay">
-            ← All programs
+          <Link href="/philanthropy" className="font-semibold text-blue hover:text-clay">
+            ← Philanthropy programs
           </Link>
         </p>
         {isExternalPath && program.href !== "/donate" ? (

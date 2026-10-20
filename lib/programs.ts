@@ -8,7 +8,7 @@ export type Program = {
   summary: string;
   paragraphs: string[];
   image: string;
-  /** If set, detail page lives here instead of /programs/[slug] */
+  /** If set, detail page lives here instead of /philanthropy/[slug] */
   href?: string;
   legacySlugs?: string[];
 };
@@ -207,7 +207,40 @@ export const programs: Program[] = [
 ];
 
 export function programHref(program: Program): string {
-  return program.href ?? `/programs/${program.slug}`;
+  return program.href ?? `/philanthropy/${program.slug}`;
+}
+
+/** Every program appears under Philanthropy nav (display order). */
+export const philanthropyNavSlugs = [
+  "winter-2022",
+  "winter-2021",
+  "fall-2021",
+  "summer-2020",
+  "spring-math-2020",
+  "bidadi-outreach",
+  "vijetha-outreach",
+  "coaching-donation",
+  "volleyball-cancer-fundraiser",
+  "digital-slate-outreach",
+  "computer-drive",
+  "educational-tablet-outreach",
+] as const;
+
+export function philanthropyNavItems() {
+  const ordered = philanthropyNavSlugs.map((slug) => {
+    const program = programs.find((p) => p.slug === slug);
+    if (!program) throw new Error(`Unknown philanthropy nav slug: ${slug}`);
+    return { href: programHref(program), label: program.title };
+  });
+  const missing = programs.filter(
+    (p) => !philanthropyNavSlugs.includes(p.slug as (typeof philanthropyNavSlugs)[number]),
+  );
+  if (missing.length > 0) {
+    throw new Error(
+      `Programs missing from philanthropy nav: ${missing.map((p) => p.slug).join(", ")}`,
+    );
+  }
+  return ordered;
 }
 
 export function getProgramBySlug(slug: string): Program | undefined {

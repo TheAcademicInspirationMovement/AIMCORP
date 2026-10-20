@@ -22,8 +22,8 @@ export function Footer() {
                 {item.label}
               </Link>
             ))}
-            <Link href="/programs" className="text-sm text-cream/85 hover:text-white">
-              Programs
+            <Link href="/philanthropy" className="text-sm text-cream/85 hover:text-white">
+              Philanthropy
             </Link>
             <Link href="/donate" className="text-sm text-cream/85 hover:text-white">
               Donate

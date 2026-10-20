@@ -74,8 +74,8 @@ export default function ImpactPage() {
         <p className="mt-10 max-w-2xl text-sm leading-6 text-muted">
           Browse the full archive of seasonal programs, outreach, and fundraisers
           on the{" "}
-          <Link href="/programs" className="font-semibold text-blue">
-            programs page
+          <Link href="/philanthropy" className="font-semibold text-blue">
+            philanthropy archive
           </Link>
           .
         </p>

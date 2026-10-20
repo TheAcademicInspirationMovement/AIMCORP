@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { nav, philanthropyNav } from "@/lib/site";
+import { philanthropyHub, philanthropyNav } from "@/lib/site";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -31,15 +31,12 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
-          {nav.slice(0, 1).map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm font-semibold tracking-wide text-navy/80 hover:text-clay"
-            >
-              {item.label}
-            </Link>
-          ))}
+          <Link
+            href="/"
+            className="text-sm font-semibold tracking-wide text-navy/80 hover:text-clay"
+          >
+            Home
+          </Link>
           <Link
             href="/about"
             className="text-sm font-semibold tracking-wide text-navy/80 hover:text-clay"
@@ -51,19 +48,19 @@ export function Header() {
             onMouseEnter={() => setPhilanthropyOpen(true)}
             onMouseLeave={() => setPhilanthropyOpen(false)}
           >
-            <button
-              type="button"
+            <Link
+              href={philanthropyHub.href}
               className="flex items-center gap-1 text-sm font-semibold tracking-wide text-navy/80 hover:text-clay"
               aria-expanded={philanthropyOpen}
             >
               Philanthropy
               <span className="text-xs" aria-hidden>▾</span>
-            </button>
+            </Link>
             {philanthropyOpen ? (
               <div className="absolute top-full left-0 z-50 mt-2 w-72 max-h-[70vh] overflow-y-auto rounded-xl border border-line bg-paper py-2 shadow-lg">
                 {philanthropyNav.map((item) => (
                   <Link
-                    key={item.href + item.label}
+                    key={item.href}
                     href={item.href}
                     className="block px-4 py-2 text-sm text-navy/90 hover:bg-cream hover:text-clay"
                   >
@@ -73,15 +70,18 @@ export function Header() {
               </div>
             ) : null}
           </div>
-          {nav.slice(2).map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm font-semibold tracking-wide text-navy/80 hover:text-clay"
-            >
-              {item.label}
-            </Link>
-          ))}
+          <Link
+            href="/join"
+            className="text-sm font-semibold tracking-wide text-navy/80 hover:text-clay"
+          >
+            Join us
+          </Link>
+          <Link
+            href="/contact"
+            className="text-sm font-semibold tracking-wide text-navy/80 hover:text-clay"
+          >
+            Contact
+          </Link>
           <Link
             href="/donate"
             className="rounded-full bg-clay px-4 py-2 text-sm font-semibold text-white hover:bg-clay-dark"
@@ -109,33 +109,56 @@ export function Header() {
       {open ? (
         <nav className="border-t border-line bg-paper px-5 py-4 md:hidden">
           <div className="flex flex-col gap-3">
-            <Link href="/" className="text-base font-semibold text-navy" onClick={() => setOpen(false)}>
+            <Link
+              href="/"
+              className="text-base font-semibold text-navy"
+              onClick={() => setOpen(false)}
+            >
               Home
             </Link>
-            <Link href="/about" className="text-base font-semibold text-navy" onClick={() => setOpen(false)}>
+            <Link
+              href="/about"
+              className="text-base font-semibold text-navy"
+              onClick={() => setOpen(false)}
+            >
               About
             </Link>
-            <p className="text-xs font-semibold tracking-wide text-muted uppercase">Philanthropy</p>
-            {philanthropyNav.map((item) => (
+            <div className="border-t border-line pt-3">
               <Link
-                key={item.href + item.label}
-                href={item.href}
-                className="text-sm font-medium text-navy/90"
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-            {nav.slice(2).map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
+                href={philanthropyHub.href}
                 className="text-base font-semibold text-navy"
                 onClick={() => setOpen(false)}
               >
-                {item.label}
+                Philanthropy
               </Link>
-            ))}
+              <ul className="mt-2 flex flex-col gap-2 border-l-2 border-line pl-3">
+                {philanthropyNav.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="text-sm font-medium text-navy/90"
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Link
+              href="/join"
+              className="text-base font-semibold text-navy"
+              onClick={() => setOpen(false)}
+            >
+              Join us
+            </Link>
+            <Link
+              href="/contact"
+              className="text-base font-semibold text-navy"
+              onClick={() => setOpen(false)}
+            >
+              Contact
+            </Link>
             <Link
               href="/donate"
               className="mt-1 w-fit rounded-full bg-clay px-4 py-2 text-sm font-semibold text-white"

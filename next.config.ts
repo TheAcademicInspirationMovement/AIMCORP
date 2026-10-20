@@ -17,6 +17,12 @@ const nextConfig: NextConfig = {
 
     return [
       ...legacyProgramRedirects,
+      { source: "/programs", destination: "/philanthropy", permanent: false },
+      {
+        source: "/programs/:slug",
+        destination: "/philanthropy/:slug",
+        permanent: false,
+      },
       { source: "/join-us", destination: "/join", permanent: false },
       { source: "/venmo", destination: "/donate", permanent: false },
       {
