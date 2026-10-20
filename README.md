@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AIMCORP
 
-## Getting Started
+Public website for the Applied Innovation Movement, rebuilt from the WordPress site as a small Next.js app.
 
-First, run the development server:
+## Local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/` Home
+- `/about`
+- `/impact` plus Bidadi and Vijetha stories
+- `/join`
+- `/contact`
+- `/donate` (PayPal + Venmo QR from the existing site)
+- `/stories/womens-health` (short version of the 2026 toolkit)
 
-## Learn More
+LearnPress courses and old event/checkout pages were intentionally left out.
 
-To learn more about Next.js, take a look at the following resources:
+## Contact email
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Set `NEXT_PUBLIC_CONTACT_EMAIL` if `info@aimcorp.org` is not the right inbox.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy on Vercel (Hobby / free)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Push this repo to GitHub.
+2. Import the project at [vercel.com/new](https://vercel.com/new).
+3. Leave the defaults (Next.js is detected).
+4. Add `NEXT_PUBLIC_CONTACT_EMAIL` in project environment variables if needed.
+5. After you are happy with the preview, point `aimcorp.org` to Vercel and keep WordPress offline or redirected.
