@@ -72,9 +72,12 @@ export default function ImpactPage() {
           ))}
         </div>
         <p className="mt-10 max-w-2xl text-sm leading-6 text-muted">
-          Earlier seasonal coaching programs and LearnPress courses from the
-          WordPress site are not part of this rebuild. They can return later if
-          they are still needed.
+          Browse the full archive of seasonal programs, outreach, and fundraisers
+          on the{" "}
+          <Link href="/programs" className="font-semibold text-blue">
+            programs page
+          </Link>
+          .
         </p>
       </section>
     </>
