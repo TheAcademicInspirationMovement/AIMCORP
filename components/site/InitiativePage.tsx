@@ -88,6 +88,15 @@ export function InitiativePage({ initiative }: { initiative: Initiative }) {
           <h1 className="mt-3 text-[clamp(2rem,5vw,3.5rem)] leading-[1.06] font-extrabold tracking-[-0.035em] text-fg">
             {initiative.name}
           </h1>
+          {/* Optional brand tagline — hidden when the initiative has none. */}
+          {initiative.tagline ? (
+            <p
+              className="mt-3 text-[1.0625rem] font-medium"
+              style={{ color: initiative.accent }}
+            >
+              {initiative.tagline}
+            </p>
+          ) : null}
           {/* Optional stage note — hidden when the initiative has none. */}
           {initiative.status ? (
             <p className="mt-4 w-fit rounded-full border border-edge-strong px-3.5 py-1.5 text-[0.8125rem] font-medium text-fg-muted">

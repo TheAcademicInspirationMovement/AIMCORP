@@ -12,6 +12,7 @@
  *   purpose      -> one sentence, shown under the name on the initiative page
  *   cardSummary  -> one short line, shown on the homepage card
  *   status       -> optional stage note shown beside the name
+ *   tagline      -> optional brand tagline shown under the name
  *   challenge    -> paragraphs describing the problem being addressed
  *   building     -> paragraphs describing what is being built
  *   audience     -> paragraphs describing who it is for
@@ -48,6 +49,8 @@ export type Initiative = {
   cardSummary: string | null;
   /** Optional stage note, e.g. "Phase 0". Hidden when null. */
   status: string | null;
+  /** Optional brand tagline shown under the name. Hidden when null. */
+  tagline: string | null;
   /** Abstract placeholder artwork — replace with an approved project image. */
   art: ImageSlot;
   /** Optional project image for the initiative page; hidden when null. */
@@ -65,19 +68,34 @@ export const initiatives: Initiative[] = [
     slug: "loka",
     name: "Loka",
     href: "/loka",
-    purpose: null, // APPROVED COPY REQUIRED
-    cardSummary: null, // APPROVED COPY REQUIRED
-    status: null, // OPTIONAL
+    /**
+     * Written from the Loka mission and program overview plus the brand kit
+     * (LOKA_ AIMCORP/). The tagline and accent come from brand-spec.txt v1.0.
+     */
+    purpose:
+      "Loka makes public and global health policy legible and trustworthy for Gen Z, through cinematic, story-driven video built on real evidence.",
+    cardSummary: "Brain food for your doomscroll.",
+    status: null, // OPTIONAL: e.g. a season or production stage, once confirmed
+    tagline: "for the community. by the community.",
     art: {
       src: "/art/initiative-loka.svg",
-      alt: "Abstract concentric arcs representing the Loka initiative",
+      alt: "The Loka mark: a gold ring crossed by teal orbits and a small network of nodes",
     },
-    image: null, // OPTIONAL: add an approved project image to show it here
-    challenge: null, // APPROVED COPY REQUIRED
-    building: null, // APPROVED COPY REQUIRED
-    audience: null, // APPROVED COPY REQUIRED
-    resources: [], // OPTIONAL: add real links only
-    accent: "#8fb0ff",
+    image: null, // OPTIONAL: a still or key frame could go here
+    challenge: [
+      "Gen Z gets much of its health information from the same platforms that spread misinformation. Fighting that is not only a matter of producing content with correct information, but of producing it in a format people choose to watch.",
+    ],
+    building: [
+      "Three-to-five-minute episodes, grouped into seasons around a theme, throughline or question in public and global health policy \u2014 subjects like vaccine acceptance, rural health, epidemics and health in the global south.",
+      "Each episode travels in tiers: the full episode, teaser clips, standalone shorts, and supporting media such as infographics, data visualizations and shareable stat cards.",
+      "Behind the camera we synthesize real evidence and seek the guidance of researchers and subject-matter experts, so that each season also produces briefs and tools an organization can actually use. Partnerships with NGOs, local health organizations and larger institutions source the primary evidence and take the policy output forward.",
+    ],
+    audience: [
+      "Gen Z \u2014 for youth, by youth. The point is to leave viewers able to speak knowledgeably about the issues that affect them, and to champion healthier futures.",
+      "And the organizations working on those issues, who can use the briefs and tools that come out of a season directly.",
+    ],
+    resources: [], // No public URL yet
+    accent: "#e8a94a", // Beacon, from the Loka brand spec
   },
   {
     slug: "oona",
@@ -93,6 +111,7 @@ export const initiatives: Initiative[] = [
     cardSummary:
       "A connected research environment for women\u2019s, community and global health research.",
     status: "Phase 0 \u2014 concept prototypes, not production software",
+    tagline: null,
     art: {
       src: "/art/initiative-oona.svg",
       alt: "Abstract layered wave bands representing the Oona initiative",
@@ -122,6 +141,7 @@ export const initiatives: Initiative[] = [
     purpose: null, // APPROVED COPY REQUIRED
     cardSummary: null, // APPROVED COPY REQUIRED
     status: null, // OPTIONAL
+    tagline: null, // OPTIONAL
     art: {
       src: "/art/initiative-stem-lab.svg",
       alt: "Abstract connected node lattice representing the STEM Lab initiative",
@@ -140,6 +160,7 @@ export const initiatives: Initiative[] = [
     purpose: null, // APPROVED COPY REQUIRED
     cardSummary: null, // APPROVED COPY REQUIRED
     status: null, // OPTIONAL
+    tagline: null, // OPTIONAL
     art: {
       src: "/art/initiative-sdoh-transformation.svg",
       alt: "Abstract nested contour shapes representing the SDoH Transformation initiative",
