@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import { Fraunces, Source_Sans_3 } from "next/font/google";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { Fraunces, Manrope, Source_Sans_3 } from "next/font/google";
+import { organisation } from "@/lib/content/organisation";
 import { site } from "@/lib/site";
 import "./globals.css";
 
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+});
+
+// Retained for the archived pages, which keep their original type stack.
 const body = Source_Sans_3({
   subsets: ["latin"],
   variable: "--font-source",
@@ -18,10 +23,10 @@ const display = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} – ${site.tagline}`,
-    template: `%s – ${site.name}`,
+    default: `${organisation.name} — ${site.tagline}`,
+    template: `%s — ${organisation.name}`,
   },
-  description: site.description,
+  description: organisation.descriptor,
 };
 
 export default function RootLayout({
@@ -31,10 +36,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${body.variable} ${display.variable} flex min-h-screen flex-col antialiased`}>
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body
+        className={`${manrope.variable} ${body.variable} ${display.variable} antialiased`}
+      >
+        {children}
       </body>
     </html>
   );

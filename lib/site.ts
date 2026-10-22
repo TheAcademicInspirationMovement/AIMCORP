@@ -1,9 +1,9 @@
 export const site = {
   name: "AIMCORP",
   legalName: "Applied Innovation Movement",
-  tagline: "Educating and Empowering Deserving Children Worldwide",
+  tagline: "Technology for social action",
   description:
-    "AIMCORP is a 501(c)(3) nonprofit catalyzing social-impact innovation through education, philanthropy, and inclusion.",
+    "AIMCorp is a nonprofit building public-interest initiatives and collaborating with mission-driven organizations through technology, engineering, design, and innovation.",
   url: "https://www.aimcorp.org",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@aimcorp.org",
   paypal: "https://www.paypal.me/aimcorp",

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" width="900" height="640" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg-collaboration-tools" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#182231"/>
+      <stop offset="1" stop-color="#0e1520"/>
+    </linearGradient>
+    <linearGradient id="ln-collaboration-tools" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7daaff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#7daaff" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#7daaff" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="gr-collaboration-tools" width="45" height="45" patternUnits="userSpaceOnUse">
+      <path d="M45 0H0v45" fill="none" stroke="#7daaff" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="640" fill="url(#bg-collaboration-tools)"/>
+  <rect width="900" height="640" fill="url(#gr-collaboration-tools)"/>
+  
+  <g fill="none" stroke="url(#ln-collaboration-tools)" stroke-width="1.5">
+    <rect x="140" y="120" width="420" height="300" rx="26"/>
+    <rect x="230" y="190" width="420" height="300" rx="26"/>
+    <rect x="320" y="260" width="420" height="300" rx="26"/>
+  </g>
+  <g stroke="#7daaff" stroke-opacity="0.4" stroke-width="1.4">
+    <path d="M356 320h348M356 364h260M356 408h300M356 452h190"/>
+  </g>
+  <g fill="#c6d9ff" fill-opacity="0.55">
+    <circle cx="352" cy="292" r="5"/>
+    <circle cx="376" cy="292" r="5"/>
+    <circle cx="400" cy="292" r="5"/>
+  </g>
+</svg>

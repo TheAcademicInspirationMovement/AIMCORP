@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" width="900" height="640" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg-initiative-oona" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#162a33"/>
+      <stop offset="1" stop-color="#0e1820"/>
+    </linearGradient>
+    <linearGradient id="ln-initiative-oona" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#74d0d6" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#74d0d6" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#74d0d6" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="gr-initiative-oona" width="45" height="45" patternUnits="userSpaceOnUse">
+      <path d="M45 0H0v45" fill="none" stroke="#74d0d6" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="640" fill="url(#bg-initiative-oona)"/>
+  <rect width="900" height="640" fill="url(#gr-initiative-oona)"/>
+  
+  <g fill="none" stroke="url(#ln-initiative-oona)" stroke-width="1.8">
+    <path d="M-40 250C150 160 300 400 470 310S760 150 940 250"/>
+    <path d="M-40 320C150 230 300 470 470 380S760 220 940 320"/>
+    <path d="M-40 390C150 300 300 540 470 450S760 290 940 390"/>
+    <path d="M-40 460C150 370 300 610 470 520S760 360 940 460"/>
+  </g>
+  <g fill="none" stroke="#74d0d6" stroke-opacity="0.3" stroke-width="1.4">
+    <path d="M-40 180C150 90 300 330 470 240S760 80 940 180"/>
+    <path d="M-40 530C150 440 300 680 470 590S760 430 940 530"/>
+  </g>
+  <g fill="#bdeef1" fill-opacity="0.6">
+    <circle cx="470" cy="310" r="5"/>
+    <circle cx="470" cy="450" r="4"/>
+  </g>
+</svg>
