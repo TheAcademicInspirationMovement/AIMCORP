@@ -1,9 +1,9 @@
 /** Homepage copy. Draft text — edit here, not in the components. */
 export const home = {
   hero: {
-    headline: "Building the future of technology for social action.",
+    headline: "Imagining the future of social action.",
     supporting:
-      "AIMCorp develops public-interest initiatives and works alongside mission-driven organizations to strengthen their capacity through technology, engineering, design, and innovation.",
+      "AIMCORP works hand-in-hand with mission-driven organizations to strengthen capacity through technology, engineering, research, and innovation.",
     primaryCta: { label: "Explore our initiatives", href: "#initiatives" },
     secondaryCta: { label: "Collaborate with us", href: "/services" },
     /** Replace with an approved photograph or illustration when available. */
@@ -15,26 +15,35 @@ export const home = {
 
   explanation: {
     heading: "Social purpose. Practical tools.",
-    body: "We bring technical and creative approaches to public-interest challenges—developing our own initiatives and collaborating with organizations to build useful, sustainable solutions.",
+    body: "We’re a nonprofit built on engaging with the community and building for the community—for the community, by the community. We accelerate participatory design with the technology and innovation usually kept behind the closed doors of industry, and look for new ways to solve complex problems.",
+
+    /** The areas our work concentrates on. */
+    focalPoints: [
+      "Education",
+      "Outreach",
+      "Community health",
+      "Sustainability",
+      "Youth",
+    ],
     /**
-     * Positioning themes, not verified impact claims. No statistics, partner
-     * counts or track-record figures belong in this section.
+     * How we work, not what we have achieved. No statistics, partner counts
+     * or track-record figures belong in this section.
      */
     capabilities: [
       {
-        title: "Public-interest initiatives",
-        body: "We develop our own projects in areas where useful tools are missing.",
-        icon: "initiatives" as const,
+        title: "Start with the community",
+        body: "The people closest to a problem shape the work from the beginning, not at the end.",
+        icon: "community" as const,
       },
       {
-        title: "Technology and engineering",
-        body: "We design and build software with the people who will rely on it.",
-        icon: "engineering" as const,
+        title: "Design together, openly",
+        body: "We put the methods and tools normally kept inside industry in the hands of the people designing with us.",
+        icon: "participatory" as const,
       },
       {
-        title: "Organizational capacity building",
-        body: "We help teams adopt, run and sustain what gets built.",
-        icon: "capacity" as const,
+        title: "Find another way through",
+        body: "Complex problems rarely yield to conventional approaches, so we look for methods that have not been tried here yet.",
+        icon: "methods" as const,
       },
     ],
   },
@@ -45,7 +54,7 @@ export const home = {
   },
 
   collaboration: {
-    heading: "Build with AIMCorp.",
+    heading: "Build with AIMCORP.",
     body: "We collaborate with mission-driven organizations to identify needs, develop practical tools, and strengthen the capacity to deliver social impact.",
     cta: { label: "Explore collaboration", href: "/services" },
   },

@@ -11,7 +11,7 @@ import { services } from "@/lib/content/services";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Proposed collaboration areas for organizations working with AIMCorp on public-interest technology.",
+    "Proposed collaboration areas for organizations working with AIMCORP on public-interest technology.",
 };
 
 export default function ServicesPage() {

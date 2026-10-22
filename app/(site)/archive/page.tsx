@@ -11,7 +11,7 @@ import { archiveEntries } from "@/lib/content/archive";
 export const metadata: Metadata = {
   title: "Archive",
   description:
-    "Older AIMCorp pages that are still published, kept here for reference.",
+    "Older AIMCORP pages that are still published, kept here for reference.",
 };
 
 export default function ArchivePage() {

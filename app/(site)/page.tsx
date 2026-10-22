@@ -67,6 +67,20 @@ export default function HomePage() {
             <p className="mt-5 max-w-[46ch] text-[1.0625rem] leading-relaxed text-fg-muted">
               {home.explanation.body}
             </p>
+
+            <h3 className="mt-9 text-[0.6875rem] font-semibold tracking-[0.2em] text-fg-muted/70 uppercase">
+              Focal points
+            </h3>
+            <ul className="mt-3.5 flex flex-wrap gap-2">
+              {home.explanation.focalPoints.map((point) => (
+                <li
+                  key={point}
+                  className="rounded-full border border-edge-strong px-3.5 py-1.5 text-[0.8125rem] font-medium text-fg"
+                >
+                  {point}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <ul className="flex flex-col gap-3.5">

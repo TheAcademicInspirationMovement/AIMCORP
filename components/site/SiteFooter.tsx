@@ -10,7 +10,7 @@ export function SiteFooter() {
       <Container className="py-14">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)]">
           <div>
-            <Link href="/" className="text-fg" aria-label="AIMCorp — home">
+            <Link href="/" className="text-fg" aria-label="AIMCORP — home">
               <Wordmark />
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-fg-muted">

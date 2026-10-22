@@ -24,7 +24,7 @@ export function initiativeMetadata(initiative: Initiative): Metadata {
     title: initiative.name,
     description:
       initiative.purpose ??
-      `${initiative.name} is an AIMCorp initiative. Published details are pending approval.`,
+      `${initiative.name} is an AIMCORP initiative. Published details are pending approval.`,
   };
 }
 
@@ -88,6 +88,12 @@ export function InitiativePage({ initiative }: { initiative: Initiative }) {
           <h1 className="mt-3 text-[clamp(2rem,5vw,3.5rem)] leading-[1.06] font-extrabold tracking-[-0.035em] text-fg">
             {initiative.name}
           </h1>
+          {/* Optional stage note — hidden when the initiative has none. */}
+          {initiative.status ? (
+            <p className="mt-4 w-fit rounded-full border border-edge-strong px-3.5 py-1.5 text-[0.8125rem] font-medium text-fg-muted">
+              {initiative.status}
+            </p>
+          ) : null}
           <div className="mt-5 max-w-[52ch]">
             {initiative.purpose ? (
               <p className="text-[1.0625rem] leading-relaxed text-fg-muted">

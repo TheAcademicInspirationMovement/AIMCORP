@@ -1,23 +1,28 @@
-type IconName = "initiatives" | "engineering" | "capacity";
+type IconName = "community" | "participatory" | "methods";
 
 /** Restrained geometric marks — deliberately not generic technology icons. */
 const paths: Record<IconName, React.ReactNode> = {
-  initiatives: (
+  // A group, drawn as peers rather than a hierarchy.
+  community: (
     <>
-      <circle cx="12" cy="12" r="7.5" />
-      <circle cx="12" cy="12" r="3" />
+      <circle cx="12" cy="5.5" r="2.75" />
+      <circle cx="5.5" cy="16.5" r="2.75" />
+      <circle cx="18.5" cy="16.5" r="2.75" />
+      <path d="M10.3 7.9 7.2 14.1M13.7 7.9l3.1 6.2M8.25 16.5h7.5" />
     </>
   ),
-  engineering: (
+  // Shared ground between two parties.
+  participatory: (
     <>
-      <path d="M4.5 12 9 7.5M4.5 12 9 16.5M19.5 12 15 7.5M19.5 12 15 16.5" />
-      <path d="M12 4.5v15" />
+      <circle cx="9" cy="12" r="5.75" />
+      <circle cx="15" cy="12" r="5.75" />
     </>
   ),
-  capacity: (
+  // A route around the obstacle rather than straight at it.
+  methods: (
     <>
-      <path d="M4.5 19.5v-5M10.5 19.5v-9M16.5 19.5v-13" />
-      <path d="M3 19.5h18" />
+      <path d="M3 18.5h4c3.2 0 3.2-13 6.4-13H21" />
+      <path d="M17.8 2.4 20.9 5.5l-3.1 3.1" />
     </>
   ),
 };

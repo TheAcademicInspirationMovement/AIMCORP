@@ -1,5 +1,5 @@
 /**
- * AIMCorp wordmark. The mark is drawn in `currentColor` so it stays legible
+ * AIMCORP wordmark. The mark is drawn in `currentColor` so it stays legible
  * on the dark canvas; swap in an approved SVG asset here if one is supplied.
  */
 export function Wordmark({ className = "" }: { className?: string }) {

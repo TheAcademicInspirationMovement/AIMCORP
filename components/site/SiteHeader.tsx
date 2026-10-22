@@ -37,7 +37,7 @@ export function SiteHeader() {
         <Link
           href="/"
           className="text-fg transition-opacity duration-200 hover:opacity-80"
-          aria-label="AIMCorp — home"
+          aria-label="AIMCORP — home"
         >
           <Wordmark />
         </Link>

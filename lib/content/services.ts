@@ -36,7 +36,7 @@ export const featuredCollaborationAreas: CollaborationArea[] = [
 
 export const services = {
   intro: {
-    heading: "Collaborate with AIMCorp.",
+    heading: "Collaborate with AIMCORP.",
     body: "We work alongside mission-driven organizations to understand a need, build something practical, and leave the capability behind. The areas below are proposed directions, offered as a starting point for a conversation rather than a fixed menu.",
   },
 
