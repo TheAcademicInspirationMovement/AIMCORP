@@ -170,7 +170,7 @@ export const initiatives: Initiative[] = [
       "Oona is a research technology platform for women\u2019s health, community health and global health research.",
     cardSummary:
       "A connected research environment for women\u2019s, community and global health research.",
-    status: "Phase 0 \u2014 concept prototypes, not production software",
+    status: null,
     tagline: null,
     art: {
       src: "/art/initiative-oona.svg",
@@ -178,8 +178,7 @@ export const initiatives: Initiative[] = [
     },
     image: null,
     challenge: [
-      "Most research software solves one part of the workflow. Some tools collect surveys, some manage datasets, some analyze quantitative data, some transcribe interviews, some provide dashboards, some manage health information systems.",
-      "Research teams assemble the rest by hand, across survey platforms, spreadsheets, messaging applications, transcription tools, statistical software, participant trackers, EHRs, DHIS2 and paper. The connective tissue is people. And it is hardest in exactly the settings the research serves: intermittent connectivity, inexpensive mobile devices, multiple languages, sensitive health information, distributed field teams and longitudinal follow-up.",
+      "Most research software solves one part of the workflow \u2014 surveys here, datasets there, transcription somewhere else. Research teams assemble the rest by hand, and the connective tissue is people. It is hardest in exactly the settings the research serves: intermittent connectivity, multiple languages, sensitive health information, distributed field teams and long follow-up.",
       "That overhead falls heaviest on community-based women\u2019s health research, which carries large questions on thin resources. Oona exists to take that weight off the people doing the work \u2014 to accelerate community-based research and to foreground women\u2019s and community health as a research domain in its own right, with the intersectional and global perspectives it requires.",
     ],
     hiddenSections: [],
@@ -187,7 +186,6 @@ export const initiatives: Initiative[] = [
     channels: [],
     building: [
       "Oona is organised as one research lifecycle \u2014 design, collect, connect, understand, act \u2014 rather than a set of separate tools bolted together. The capabilities below are the suite that lifecycle is built from.",
-      "This phase is deliberately not production software. It is three representations of a single product vision: five concept prototypes with a shared design system, a technical and product scope document, and a pitch deck. Nothing sits behind those screens yet \u2014 no backend, no database, no messaging provider, no analysis agent.",
     ],
     features: [
       {
@@ -275,8 +273,7 @@ export const initiatives: Initiative[] = [
           "Participant Journey \u2014 a participant as a timeline across channels, with consent, referrals and an audit trail on one record.",
       },
     ],
-    galleryNote:
-      "Screens from the concept prototypes. All data shown is synthetic \u2014 these are not findings from a real study.",
+    galleryNote: "All data shown is sample data.",
     audience: [
       "Research teams working in women\u2019s health, community health and global health, including implementation research, longitudinal population research, mixed-methods research, and field research in low-connectivity environments.",
       "The people who carry that work day to day: field researchers, community health workers, and the multi-institution partnerships that run studies across sites.",
