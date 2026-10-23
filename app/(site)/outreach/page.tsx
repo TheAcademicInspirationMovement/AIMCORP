@@ -11,7 +11,7 @@ import { outreach, outreachGroups } from "@/lib/content/outreach";
 export const metadata: Metadata = {
   title: "Outreach",
   description:
-    "The programs AIMCORP ran between 2020 and 2022: free virtual courses, school outreach, and device drives.",
+    "AIMCORP's work with students, schools and communities between 2019 and 2024: free virtual courses, school outreach, and device drives.",
 };
 
 export default function OutreachPage() {

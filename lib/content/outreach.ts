@@ -13,13 +13,13 @@ import type { ProgramCategory } from "@/lib/programs";
 
 export const outreach = {
   heading: "Outreach",
-  lede: "Before AIMCORP built software, it ran programs. This is what that work was.",
+  lede: "Working directly with students, schools and communities.",
 
   history: [
-    "AIMCORP began as The Academic Inspiration Movement, a volunteer effort to get educational resources and technology to students who did not have them. Between 2020 and 2022 that took two forms: teaching, and equipping.",
+    "AIMCORP began as The Academic Inspiration Movement, a volunteer effort to get educational resources and technology to students who did not have them. Between 2019 and 2024 that took two forms: teaching, and equipping.",
     "The teaching was seasonal. Free, interactive courses for students of all ages ran over summer, fall, winter and spring, held virtually in group classes over Google Meet, taught by volunteers. The equipping was physical. Computers, tablets and digital slates were collected and distributed to students without devices at home, and school supplies and STEM enrichment went to partner schools in Karnataka, India — Bidadi Primary School and Vijetha Special School.",
     "Fundraising ran alongside both: a computer drive, a community volleyball event, and donations that sustained the coaching programs and COVID-19 relief.",
-    "Those programs are no longer running, and the pages that documented them are kept in the archive rather than maintained. The work informs what AIMCORP builds now.",
+    "We are still engaging with schools, and this work shapes what AIMCORP builds now.",
   ],
 
   /** Real photographs from the programs above. */
@@ -46,7 +46,7 @@ export const outreach = {
   categoryOrder: ["outreach", "seasonal", "fundraiser"] as ProgramCategory[],
 
   closing:
-    "Every page from this period is still online, kept for reference rather than maintained.",
+    "Pages documenting earlier seasons are kept online for reference.",
 };
 
 export type OutreachGroup = {
