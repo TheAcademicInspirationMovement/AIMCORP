@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import type { Initiative } from "@/lib/content/initiatives";
 import { initiativePlaceholders } from "@/lib/content/initiatives";
 import {
@@ -32,10 +33,12 @@ function Section({
   heading,
   paragraphs,
   placeholder,
+  children,
 }: {
   heading: string;
   paragraphs: string[] | null;
   placeholder: string;
+  children?: ReactNode;
 }) {
   return (
     <section className="reveal border-t border-edge pt-8">
@@ -58,6 +61,77 @@ function Section({
           <ContentPlaceholder>{placeholder}</ContentPlaceholder>
         )}
       </div>
+      {children}
+    </section>
+  );
+}
+
+function FeatureGrid({ initiative }: { initiative: Initiative }) {
+  if (initiative.features.length === 0) return null;
+  return (
+    <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {initiative.features.map((feature) => (
+        <li
+          key={feature.name}
+          className="rounded-[1.25rem] border border-edge bg-surface-2 p-5"
+        >
+          <h3
+            className="text-[0.9375rem] font-bold tracking-[-0.01em]"
+            style={{ color: initiative.accent }}
+          >
+            {feature.name}
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+            {feature.body}
+          </p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function GallerySection({ initiative }: { initiative: Initiative }) {
+  if (initiative.gallery.length === 0) return null;
+  const [lead, ...rest] = initiative.gallery;
+
+  return (
+    <section className="reveal border-t border-edge pt-8">
+      <h2 className="text-[1.375rem] font-bold tracking-[-0.02em] text-fg">
+        From the platform
+      </h2>
+      {initiative.galleryNote ? (
+        <p className="mt-3 max-w-[62ch] text-sm leading-relaxed text-fg-muted/85 italic">
+          {initiative.galleryNote}
+        </p>
+      ) : null}
+
+      <figure className="mt-6">
+        <div className="overflow-hidden rounded-[1.25rem] border border-edge">
+          <Art src={lead.src} alt={lead.alt} />
+        </div>
+        {lead.caption ? (
+          <figcaption className="mt-3 text-sm leading-relaxed text-fg-muted">
+            {lead.caption}
+          </figcaption>
+        ) : null}
+      </figure>
+
+      {rest.length > 0 ? (
+        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+          {rest.map((item) => (
+            <figure key={item.src}>
+              <div className="overflow-hidden rounded-[1.25rem] border border-edge">
+                <Art src={item.src} alt={item.alt} />
+              </div>
+              {item.caption ? (
+                <figcaption className="mt-3 text-sm leading-relaxed text-fg-muted">
+                  {item.caption}
+                </figcaption>
+              ) : null}
+            </figure>
+          ))}
+        </div>
+      ) : null}
     </section>
   );
 }
@@ -228,12 +302,16 @@ export function InitiativePage({ initiative }: { initiative: Initiative }) {
 
           <VideoSection initiative={initiative} />
 
+          <GallerySection initiative={initiative} />
+
           {initiative.hiddenSections.includes("building") ? null : (
             <Section
               heading="What we’re building"
               paragraphs={initiative.building}
               placeholder={initiativePlaceholders.building}
-            />
+            >
+              <FeatureGrid initiative={initiative} />
+            </Section>
           )}
 
           {initiative.hiddenSections.includes("audience") ? null : (

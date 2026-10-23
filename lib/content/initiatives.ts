@@ -18,6 +18,8 @@
  *   audience     -> paragraphs describing who it is for
  *   video        -> set youtubeId once the video is published
  *   channels     -> set each href to a real account URL; never invent one
+ *   features     -> named parts of the work, shown as a grid
+ *   gallery      -> real screenshots or photographs only
  *   resources    -> real, working links only
  *   image        -> replace `art` or add a real project image (see public/art)
  * ---------------------------------------------------------------------------
@@ -55,6 +57,12 @@ export type Channel = {
   href: string | null;
 };
 
+/** A named part of what an initiative is building. */
+export type Feature = {
+  name: string;
+  body: string;
+};
+
 /** Sections an initiative can opt out of entirely. */
 export type InitiativeSection = "challenge" | "building" | "audience";
 
@@ -63,6 +71,9 @@ export type ImageSlot = {
   src: string;
   alt: string;
 };
+
+/** A real screenshot or photograph, with the context needed to read it. */
+export type GalleryItem = ImageSlot & { caption?: string };
 
 export type Initiative = {
   slug: InitiativeSlug;
@@ -89,6 +100,12 @@ export type Initiative = {
   video: VideoSlot | null;
   /** Channels to link out to. Hidden when empty. */
   channels: Channel[];
+  /** Named parts of the work, shown as a grid. Hidden when empty. */
+  features: Feature[];
+  /** Real imagery only — never a mock-up presented as a screenshot. */
+  gallery: GalleryItem[];
+  /** A line above the gallery, e.g. what the imagery is and is not. */
+  galleryNote: string | null;
   resources: ResourceLink[];
   /** Per-initiative accent, kept inside the blue family and deliberately quiet. */
   accent: string;
@@ -130,6 +147,9 @@ export const initiatives: Initiative[] = [
       { platform: "Instagram", href: null },
       { platform: "TikTok", href: null },
     ],
+    features: [],
+    gallery: [],
+    galleryNote: null,
     audience: [
       "Gen Z \u2014 for youth, by youth. The point is to leave viewers able to speak knowledgeably about the issues that affect them, and to champion healthier futures.",
       "And the organizations working on those issues, who can use the briefs and tools that come out of a season directly.",
@@ -143,8 +163,8 @@ export const initiatives: Initiative[] = [
     href: "/oona",
     /**
      * Sourced from the Oona project's own documentation (README.md and
-     * src/context.md in the oona repository), not written from scratch.
-     * Re-check it against that repository before publishing.
+     * src/context.md in the oona repository). The gallery images are real
+     * screenshots of the concept prototypes in oona/prototypes.
      */
     purpose:
       "Oona is a research technology platform for women\u2019s health, community health and global health research.",
@@ -156,25 +176,112 @@ export const initiatives: Initiative[] = [
       src: "/art/initiative-oona.svg",
       alt: "Abstract layered wave bands representing the Oona initiative",
     },
-    image: null, // OPTIONAL: a screenshot of a real prototype screen could go here
+    image: null,
     challenge: [
       "Most research software solves one part of the workflow. Some tools collect surveys, some manage datasets, some analyze quantitative data, some transcribe interviews, some provide dashboards, some manage health information systems.",
-      "Research teams end up assembling a fragmented ecosystem across survey platforms, spreadsheets, messaging applications, transcription tools, statistical software, participant trackers, EHRs, DHIS2 and paper workflows \u2014 and the connections between those pieces are held together by people.",
-      "That fragmentation is hardest in exactly the settings the research serves: intermittent connectivity, inexpensive mobile devices, multiple languages, sensitive health information, distributed field teams and longitudinal follow-up.",
-    ],
-    building: [
-      "A connected research environment designed around how community and women\u2019s health research actually happens, organised around one lifecycle: design, collect, connect, understand, act.",
-      "This phase is deliberately not production software. It is three representations of a single product vision \u2014 five concept prototypes with a shared design system, a technical and product scope document, and a pitch deck \u2014 built in that order.",
-      "Nothing sits behind those screens yet: no backend, no database, no messaging provider, no analysis agent. All research data shown is synthetic, and where a screen shows something that does not exist yet, it says so on the screen.",
-    ],
-    audience: [
-      "Research teams working in women\u2019s health, community health and global health, including implementation research, longitudinal population research, mixed-methods research, and field research in low-connectivity environments.",
-      "The people who carry that work day to day: field researchers, community health workers, and the multi-institution partnerships that run studies across sites.",
+      "Research teams assemble the rest by hand, across survey platforms, spreadsheets, messaging applications, transcription tools, statistical software, participant trackers, EHRs, DHIS2 and paper. The connective tissue is people. And it is hardest in exactly the settings the research serves: intermittent connectivity, inexpensive mobile devices, multiple languages, sensitive health information, distributed field teams and longitudinal follow-up.",
+      "That overhead falls heaviest on community-based women\u2019s health research, which carries large questions on thin resources. Oona exists to take that weight off the people doing the work \u2014 to accelerate community-based research and to foreground women\u2019s and community health as a research domain in its own right, with the intersectional and global perspectives it requires.",
     ],
     hiddenSections: [],
     video: null,
     channels: [],
-    resources: [], // No public URL yet \u2014 add prototypes, scope or deck when published
+    building: [
+      "Oona is organised as one research lifecycle \u2014 design, collect, connect, understand, act \u2014 rather than a set of separate tools bolted together. The capabilities below are the suite that lifecycle is built from.",
+      "This phase is deliberately not production software. It is three representations of a single product vision: five concept prototypes with a shared design system, a technical and product scope document, and a pitch deck. Nothing sits behind those screens yet \u2014 no backend, no database, no messaging provider, no analysis agent.",
+    ],
+    features: [
+      {
+        name: "Study",
+        body: "Research design and study management: protocols, sites, eligibility, instruments, consent workflows and multilingual, versioned data dictionaries.",
+      },
+      {
+        name: "Collect",
+        body: "Mobile-first, offline-first collection in the field, including lightweight WhatsApp workflows so community health workers need not open the full application.",
+      },
+      {
+        name: "Listen",
+        body: "Qualitative data treated as first-class research data: parallel languages, redaction, human-validated coding, and themes that trace back to a timestamp.",
+      },
+      {
+        name: "Cohort",
+        body: "Longitudinal participant management across visits, households and follow-up windows.",
+      },
+      {
+        name: "Field",
+        body: "Operational tools for field research \u2014 team coordination, device state and synchronisation a supervisor can audit.",
+      },
+      {
+        name: "Network",
+        body: "The multi-institution partnerships research actually runs through, modelled rather than left implicit.",
+      },
+      {
+        name: "Rules",
+        body: "A configurable research workflow and rules engine for referrals, escalations and protocol logic.",
+      },
+      {
+        name: "Connect",
+        body: "Coexistence with the health and research infrastructure already in place, rather than an assumption that Oona replaces it.",
+      },
+      {
+        name: "Intelligence",
+        body: "Agentic analysis bound by a contract: trace, model comparison, triangulation, contradictory evidence, limitations, provenance, and a human decision at the end.",
+      },
+      {
+        name: "Insights",
+        body: "How a finding is communicated once it holds \u2014 to a team, a partner or a community.",
+      },
+      {
+        name: "Library",
+        body: "A searchable knowledge environment for women\u2019s and community health research.",
+      },
+      {
+        name: "Community",
+        body: "Research that supports action and learning inside the communities it draws on.",
+      },
+      {
+        name: "Vault",
+        body: "The governance and trust layer underneath the ecosystem.",
+      },
+    ],
+    gallery: [
+      {
+        src: "/art/oona/study-command-center.jpg",
+        alt: "The Oona study command center, showing enrolment, retention and open data-quality flags alongside patterns worth investigating",
+        caption:
+          "Study Command Center \u2014 a study\u2019s state answered at a glance, with intelligence on the front page rather than in a separate tab.",
+      },
+      {
+        src: "/art/oona/intelligence-investigate.jpg",
+        alt: "An Oona investigation showing an analysis trace, an investigation brief and a provenance panel side by side",
+        caption:
+          "Investigate \u2014 every step inspectable and re-runnable, every claim labelled by evidence type and traced to its source.",
+      },
+      {
+        src: "/art/oona/listen.jpg",
+        alt: "Oona Listen, showing qualitative transcripts in parallel languages with coding and themes",
+        caption:
+          "Listen \u2014 qualitative evidence in parallel languages, with human-validated coding.",
+      },
+      {
+        src: "/art/oona/collect-field.jpg",
+        alt: "Oona Collect and Field, showing field team status and synchronisation state",
+        caption:
+          "Collect & Field \u2014 the four questions a field researcher always has, and synchronisation you can audit.",
+      },
+      {
+        src: "/art/oona/participant-journey.jpg",
+        alt: "A participant record shown as a timeline across four channels with consent, referrals and an audit trail",
+        caption:
+          "Participant Journey \u2014 a participant as a timeline across channels, with consent, referrals and an audit trail on one record.",
+      },
+    ],
+    galleryNote:
+      "Screens from the concept prototypes. All data shown is synthetic \u2014 these are not findings from a real study.",
+    audience: [
+      "Research teams working in women\u2019s health, community health and global health, including implementation research, longitudinal population research, mixed-methods research, and field research in low-connectivity environments.",
+      "The people who carry that work day to day: field researchers, community health workers, and the multi-institution partnerships that run studies across sites.",
+    ],
+    resources: [], // No public URL yet
     accent: "#f1a9ab", // the Oona mark's salmon
   },
   {
@@ -196,6 +303,9 @@ export const initiatives: Initiative[] = [
     hiddenSections: [],
     video: null,
     channels: [],
+    features: [],
+    gallery: [],
+    galleryNote: null,
     resources: [],
     accent: "#a39cff",
   },
@@ -203,21 +313,62 @@ export const initiatives: Initiative[] = [
     slug: "sdoh-transformation",
     name: "SDoH Transformation",
     href: "/sdoh-transformation",
-    purpose: null, // APPROVED COPY REQUIRED
-    cardSummary: null, // APPROVED COPY REQUIRED
-    status: null, // OPTIONAL
-    tagline: null, // OPTIONAL
+    /**
+     * Written from the ED Care Closet project documentation (README.md,
+     * PROJECT_SUMMARY.md and ARCHITECTURE.md in the ed-care-closet repo).
+     * ED Care Closet is one project under this initiative — the broader
+     * framing for the initiative itself is still awaiting approved copy.
+     */
+    purpose:
+      "Making the response to patients\u2019 social needs part of clinical care rather than something that happens beside it.",
+    cardSummary:
+      "Social needs answered at the point of care, inside the clinical record.",
+    status: null,
+    tagline: null,
     art: {
       src: "/art/initiative-sdoh-transformation.svg",
       alt: "Abstract nested contour shapes representing the SDoH Transformation initiative",
     },
     image: null,
-    challenge: null,
-    building: null,
-    audience: null,
+    challenge: [
+      "Emergency departments already ask about social needs. Housing, hygiene, food and transportation insecurity get screened, recorded, and then handed to a volunteer donation closet that the clinical system cannot see: no order, no tracking, no record that anything was delivered.",
+      "So the need is known and the help exists, but the two are joined by hand \u2014 and nothing about it reaches the chart.",
+    ],
     hiddenSections: [],
     video: null,
     channels: [],
+    building: [
+      "ED Care Closet, the first project under this initiative, is a working prototype that turns that closet into a clinical workflow: a screening result qualifies a patient for a kit, a nurse orders it, a volunteer picks and scans it, the delivery is confirmed, and the intervention is written back to the record as a completed procedure.",
+      "It is built FHIR-native on HL7 FHIR R4 and designed to be SMART-on-FHIR compatible, so the same workflow can move onto Epic or another EHR without being rebuilt. Patient, Encounter and Observation carry the clinical context and the screening result; ServiceRequest carries the order; Task carries the volunteer\u2019s work; Procedure carries the documentation back.",
+    ],
+    features: [
+      {
+        name: "Screening to qualification",
+        body: "A configurable rules engine reads SDOH screening results \u2014 housing, hygiene, food and transportation insecurity \u2014 and determines which intervention kits a patient qualifies for.",
+      },
+      {
+        name: "Ordering and fulfillment",
+        body: "Nurses order from the patient\u2019s context; volunteers work a task queue, scan the physical kit by barcode, and confirm delivery.",
+      },
+      {
+        name: "Inventory",
+        body: "Stock levels, low-stock alerts and barcode generation for the kits themselves.",
+      },
+      {
+        name: "EHR integration",
+        body: "Standard FHIR R4 resources throughout, with writeback so a delivered kit appears in the record as a documented intervention.",
+      },
+      {
+        name: "Operational analytics",
+        body: "Fulfillment times, kit distribution and the audit trail behind both.",
+      },
+    ],
+    gallery: [],
+    galleryNote: null,
+    audience: [
+      "Emergency department staff who screen for social needs, and the volunteers who fulfil what gets ordered.",
+      "The hospitals and health systems that want the response to those needs documented in the record rather than tracked on paper beside it.",
+    ],
     resources: [],
     accent: "#8cb6dd",
   },
