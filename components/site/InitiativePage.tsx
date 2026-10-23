@@ -62,6 +62,96 @@ function Section({
   );
 }
 
+function VideoSection({ initiative }: { initiative: Initiative }) {
+  const video = initiative.video;
+  if (!video) return null;
+  const unlinked = initiative.channels.some((channel) => !channel.href);
+
+  return (
+    <section className="reveal border-t border-edge pt-8">
+      <h2 className="text-[1.375rem] font-bold tracking-[-0.02em] text-fg">
+        Watch
+      </h2>
+
+      <div className="mt-5 overflow-hidden rounded-[1.25rem] border border-edge">
+        <div className="relative aspect-video w-full">
+          {video.youtubeId ? (
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}`}
+              title={video.title}
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              loading="lazy"
+              className="absolute inset-0 h-full w-full border-0"
+            />
+          ) : (
+            <>
+              {/* No broken player: the slot holds its shape until the video exists. */}
+              <Art src={initiative.art.src} alt="" />
+              <div
+                className="absolute inset-0"
+                aria-hidden="true"
+                style={{ background: "rgba(9,13,19,0.72)" }}
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-6 text-center">
+                <span
+                  className="flex h-14 w-14 items-center justify-center rounded-full border"
+                  style={{ borderColor: initiative.accent }}
+                  aria-hidden="true"
+                >
+                  <svg viewBox="0 0 24 24" className="h-5 w-5 translate-x-px">
+                    <path d="M8 5.5v13l11-6.5z" fill={initiative.accent} />
+                  </svg>
+                </span>
+                <p className="max-w-[36ch] text-[0.9375rem] leading-relaxed text-fg-muted">
+                  {video.pendingNote}
+                </p>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      {initiative.channels.length > 0 ? (
+        <div className="mt-6">
+          <h3 className="text-[0.6875rem] font-semibold tracking-[0.2em] text-fg-muted/70 uppercase">
+            Channels
+          </h3>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {initiative.channels.map((channel) =>
+              channel.href ? (
+                <li key={channel.platform}>
+                  <a
+                    href={channel.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-edge-strong px-3.5 py-1.5 text-[0.8125rem] font-medium text-fg transition-colors duration-200 hover:bg-white/5"
+                  >
+                    {channel.platform}
+                    <span aria-hidden="true">&#8599;</span>
+                  </a>
+                </li>
+              ) : (
+                <li
+                  key={channel.platform}
+                  className="rounded-full border border-dashed border-edge px-3.5 py-1.5 text-[0.8125rem] font-medium text-fg-muted/60"
+                >
+                  {channel.platform}
+                </li>
+              ),
+            )}
+          </ul>
+          {unlinked ? (
+            <p className="mt-3 text-sm text-fg-muted/85 italic">
+              Dashed channels are not linked yet.
+            </p>
+          ) : null}
+        </div>
+      ) : null}
+    </section>
+  );
+}
+
 export function InitiativePage({ initiative }: { initiative: Initiative }) {
   const hasResources = initiative.resources.length > 0;
 
@@ -128,21 +218,31 @@ export function InitiativePage({ initiative }: { initiative: Initiative }) {
         ) : null}
 
         <div className="flex flex-col gap-12">
-          <Section
-            heading="The challenge"
-            paragraphs={initiative.challenge}
-            placeholder={initiativePlaceholders.challenge}
-          />
-          <Section
-            heading="What we’re building"
-            paragraphs={initiative.building}
-            placeholder={initiativePlaceholders.building}
-          />
-          <Section
-            heading="Intended audience"
-            paragraphs={initiative.audience}
-            placeholder={initiativePlaceholders.audience}
-          />
+          {initiative.hiddenSections.includes("challenge") ? null : (
+            <Section
+              heading="The challenge"
+              paragraphs={initiative.challenge}
+              placeholder={initiativePlaceholders.challenge}
+            />
+          )}
+
+          <VideoSection initiative={initiative} />
+
+          {initiative.hiddenSections.includes("building") ? null : (
+            <Section
+              heading="What we’re building"
+              paragraphs={initiative.building}
+              placeholder={initiativePlaceholders.building}
+            />
+          )}
+
+          {initiative.hiddenSections.includes("audience") ? null : (
+            <Section
+              heading="Intended audience"
+              paragraphs={initiative.audience}
+              placeholder={initiativePlaceholders.audience}
+            />
+          )}
 
           {/* Optional — hidden entirely when no real links are supplied. */}
           {hasResources ? (

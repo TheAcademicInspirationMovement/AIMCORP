@@ -16,6 +16,8 @@
  *   challenge    -> paragraphs describing the problem being addressed
  *   building     -> paragraphs describing what is being built
  *   audience     -> paragraphs describing who it is for
+ *   video        -> set youtubeId once the video is published
+ *   channels     -> set each href to a real account URL; never invent one
  *   resources    -> real, working links only
  *   image        -> replace `art` or add a real project image (see public/art)
  * ---------------------------------------------------------------------------
@@ -32,6 +34,29 @@ export type ResourceLink = {
   href: string;
   description?: string;
 };
+
+/**
+ * A video slot. The layout is in place before the video is; set `youtubeId`
+ * once the video is published and the embed replaces the placeholder.
+ */
+export type VideoSlot = {
+  /** YouTube video id, e.g. the "abc123" in youtu.be/abc123. */
+  youtubeId: string | null;
+  /** Used as the iframe title, so it must describe the video. */
+  title: string;
+  /** Shown in place of the player while youtubeId is null. */
+  pendingNote: string;
+};
+
+/** A channel the initiative publishes on. */
+export type Channel = {
+  platform: string;
+  /** Null until a real account URL is supplied — never invent one. */
+  href: string | null;
+};
+
+/** Sections an initiative can opt out of entirely. */
+export type InitiativeSection = "challenge" | "building" | "audience";
 
 export type ImageSlot = {
   /** Swap this path for an approved asset; the layout does not change. */
@@ -58,6 +83,12 @@ export type Initiative = {
   challenge: string[] | null;
   building: string[] | null;
   audience: string[] | null;
+  /** Sections this initiative does not use; no placeholder is shown for them. */
+  hiddenSections: InitiativeSection[];
+  /** Optional video slot, shown after the challenge. Hidden when null. */
+  video: VideoSlot | null;
+  /** Channels to link out to. Hidden when empty. */
+  channels: Channel[];
   resources: ResourceLink[];
   /** Per-initiative accent, kept inside the blue family and deliberately quiet. */
   accent: string;
@@ -85,10 +116,19 @@ export const initiatives: Initiative[] = [
     challenge: [
       "Gen Z gets much of its health information from the same platforms that spread misinformation. Fighting that is not only a matter of producing content with correct information, but of producing it in a format people choose to watch.",
     ],
-    building: [
-      "Three-to-five-minute episodes, grouped into seasons around a theme, throughline or question in public and global health policy \u2014 subjects like vaccine acceptance, rural health, epidemics and health in the global south.",
-      "Each episode travels in tiers: the full episode, teaser clips, standalone shorts, and supporting media such as infographics, data visualizations and shareable stat cards.",
-      "Behind the camera we synthesize real evidence and seek the guidance of researchers and subject-matter experts, so that each season also produces briefs and tools an organization can actually use. Partnerships with NGOs, local health organizations and larger institutions source the primary evidence and take the policy output forward.",
+    building: null,
+    hiddenSections: ["building"], // the trailer takes this slot instead
+    video: {
+      // Set this to the YouTube id once the trailer is published.
+      youtubeId: null,
+      title: "Loka \u2014 vaccination season trailer",
+      pendingNote: "The vaccination season trailer will play here once it\u2019s published.",
+    },
+    channels: [
+      // Add each real account URL here; the chips stay unlinked until then.
+      { platform: "YouTube", href: null },
+      { platform: "Instagram", href: null },
+      { platform: "TikTok", href: null },
     ],
     audience: [
       "Gen Z \u2014 for youth, by youth. The point is to leave viewers able to speak knowledgeably about the issues that affect them, and to champion healthier futures.",
@@ -131,6 +171,9 @@ export const initiatives: Initiative[] = [
       "Research teams working in women\u2019s health, community health and global health, including implementation research, longitudinal population research, mixed-methods research, and field research in low-connectivity environments.",
       "The people who carry that work day to day: field researchers, community health workers, and the multi-institution partnerships that run studies across sites.",
     ],
+    hiddenSections: [],
+    video: null,
+    channels: [],
     resources: [], // No public URL yet \u2014 add prototypes, scope or deck when published
     accent: "#f1a9ab", // the Oona mark's salmon
   },
@@ -150,6 +193,9 @@ export const initiatives: Initiative[] = [
     challenge: null,
     building: null,
     audience: null,
+    hiddenSections: [],
+    video: null,
+    channels: [],
     resources: [],
     accent: "#a39cff",
   },
@@ -169,6 +215,9 @@ export const initiatives: Initiative[] = [
     challenge: null,
     building: null,
     audience: null,
+    hiddenSections: [],
+    video: null,
+    channels: [],
     resources: [],
     accent: "#8cb6dd",
   },
