@@ -17,8 +17,34 @@ const nextConfig: NextConfig = {
 
     return [
       ...legacyProgramRedirects,
-      // The current aimcorp.org has a Loka page at this path.
+      // ---------------------------------------------------------------
+      // Pages that exist on the current aimcorp.org (WordPress) and have
+      // no equivalent here. Kept as temporary redirects so any of them can
+      // be rebuilt later without fighting a cached permanent redirect.
+      // /suhanphilosophy is deliberately absent: personal writing, left to 404.
+      // ---------------------------------------------------------------
       { source: "/aimcorp-loka", destination: "/loka", permanent: false },
+      { source: "/innovation", destination: "/archive", permanent: false },
+      { source: "/supporters", destination: "/archive", permanent: false },
+      {
+        source: "/internship-application",
+        destination: "/archive",
+        permanent: false,
+      },
+      {
+        source: "/aimcorp-leadership-applications",
+        destination: "/archive",
+        permanent: false,
+      },
+      { source: "/yakshgana", destination: "/archive", permanent: false },
+      { source: "/yashagana-show", destination: "/archive", permanent: false },
+      { source: "/new-programs", destination: "/outreach", permanent: false },
+      {
+        source: "/online-education",
+        destination: "/outreach",
+        permanent: false,
+      },
+      { source: "/mailing-list-signup", destination: "/", permanent: false },
       { source: "/programs", destination: "/philanthropy", permanent: false },
       {
         source: "/programs/:slug",
