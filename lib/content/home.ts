@@ -21,9 +21,9 @@ export const home = {
     focalPoints: [
       "Education",
       "Outreach",
-      "Community health",
+      "Public health",
       "Sustainability",
-      "Youth",
+      "Youth development",
     ],
     /**
      * How we work, not what we have achieved. No statistics, partner counts
