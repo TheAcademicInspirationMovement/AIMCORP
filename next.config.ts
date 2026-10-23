@@ -17,6 +17,8 @@ const nextConfig: NextConfig = {
 
     return [
       ...legacyProgramRedirects,
+      // The current aimcorp.org has a Loka page at this path.
+      { source: "/aimcorp-loka", destination: "/loka", permanent: false },
       { source: "/programs", destination: "/philanthropy", permanent: false },
       {
         source: "/programs/:slug",
