@@ -90,6 +90,45 @@ function FeatureGrid({ initiative }: { initiative: Initiative }) {
   );
 }
 
+function EmbedSection({ initiative }: { initiative: Initiative }) {
+  const embed = initiative.embed;
+  if (!embed) return null;
+
+  return (
+    <section className="reveal border-t border-edge pt-8">
+      <h2 className="text-[1.375rem] font-bold tracking-[-0.02em] text-fg">
+        {embed.heading}
+      </h2>
+      <p className="mt-3 max-w-[62ch] text-[1.0625rem] leading-relaxed text-fg-muted">
+        {embed.description}
+      </p>
+
+      {/* Framed so the tool keeps its own styling, isolated from the site's. */}
+      <div className="mt-6 overflow-hidden rounded-[1.25rem] border border-edge bg-white">
+        <iframe
+          src={embed.src}
+          title={embed.title}
+          loading="lazy"
+          className="block w-full border-0"
+          style={{ height: `${embed.height}px` }}
+        />
+      </div>
+
+      <p className="mt-3 text-sm text-fg-muted">
+        <a
+          href={embed.src}
+          target="_blank"
+          rel="noreferrer"
+          className="font-semibold text-accent hover:text-fg"
+        >
+          Open it in a new tab
+        </a>{" "}
+        for more room.
+      </p>
+    </section>
+  );
+}
+
 function GallerySection({ initiative }: { initiative: Initiative }) {
   if (initiative.gallery.length === 0) return null;
   const [lead, ...rest] = initiative.gallery;
@@ -303,6 +342,8 @@ export function InitiativePage({ initiative }: { initiative: Initiative }) {
           <VideoSection initiative={initiative} />
 
           <GallerySection initiative={initiative} />
+
+          <EmbedSection initiative={initiative} />
 
           {initiative.hiddenSections.includes("building") ? null : (
             <Section

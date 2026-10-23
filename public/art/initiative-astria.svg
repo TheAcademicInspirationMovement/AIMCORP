@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" width="900" height="640" preserveAspectRatio="xMidYMid slice">
+  <!-- Converging paths to a single point. Celestial #4776e6 and Northstar
+       #f7f5ef are from the Astria brand tokens (docs/assets/astria.css). -->
+  <defs>
+    <linearGradient id="bg-astria" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16213a"/>
+      <stop offset="1" stop-color="#0d131f"/>
+    </linearGradient>
+    <linearGradient id="ln-astria" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4776e6" stop-opacity="0"/>
+      <stop offset="0.55" stop-color="#4776e6" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#aabef5" stop-opacity="0.7"/>
+    </linearGradient>
+    <pattern id="gr-astria" width="45" height="45" patternUnits="userSpaceOnUse">
+      <path d="M45 0H0v45" fill="none" stroke="#aabef5" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="640" fill="url(#bg-astria)"/>
+  <rect width="900" height="640" fill="url(#gr-astria)"/>
+
+  <!-- Many starting points, one path forward -->
+  <g fill="none" stroke="url(#ln-astria)" stroke-width="1.6">
+    <path d="M-20 600C180 560 300 430 660 230"/>
+    <path d="M-20 500C200 470 320 380 660 230"/>
+    <path d="M-20 400C220 390 340 330 660 230"/>
+    <path d="M-20 300C240 310 360 280 660 230"/>
+    <path d="M-20 200C260 230 380 230 660 230"/>
+    <path d="M-20 100C280 150 400 185 660 230"/>
+  </g>
+
+  <g fill="#aabef5" fill-opacity="0.45">
+    <circle cx="60" cy="585" r="4"/>
+    <circle cx="60" cy="489" r="4"/>
+    <circle cx="60" cy="394" r="4"/>
+    <circle cx="60" cy="301" r="4"/>
+    <circle cx="60" cy="208" r="4"/>
+    <circle cx="60" cy="116" r="4"/>
+  </g>
+
+  <!-- The point they converge on -->
+  <g>
+    <circle cx="660" cy="230" r="58" fill="none" stroke="#4776e6" stroke-opacity="0.3" stroke-width="1.4"/>
+    <circle cx="660" cy="230" r="104" fill="none" stroke="#4776e6" stroke-opacity="0.16" stroke-width="1.2"/>
+    <path d="M660 196l9.5 24.5L694 230l-24.5 9.5L660 264l-9.5-24.5L626 230l24.5-9.5z" fill="#f7f5ef" fill-opacity="0.85"/>
+  </g>
+</svg>

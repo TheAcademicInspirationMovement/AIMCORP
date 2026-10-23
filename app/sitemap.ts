@@ -4,7 +4,13 @@ import { programs, programHref } from "@/lib/programs";
 import { site } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const current = ["", ...initiatives.map((i) => i.href), "/services", "/archive"];
+  const current = [
+    "",
+    ...initiatives.map((i) => i.href),
+    "/outreach",
+    "/services",
+    "/archive",
+  ];
 
   const archived = [
     "/about",

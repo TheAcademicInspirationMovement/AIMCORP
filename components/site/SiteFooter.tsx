@@ -57,6 +57,14 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link
+                  href="/outreach"
+                  className="text-sm text-fg-muted transition-colors duration-200 hover:text-fg"
+                >
+                  Outreach
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={archiveLink.href}
                   className="text-sm text-fg-muted/70 transition-colors duration-200 hover:text-fg"
                 >

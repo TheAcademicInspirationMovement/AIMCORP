@@ -19,6 +19,7 @@
  *   video        -> set youtubeId once the video is published
  *   channels     -> set each href to a real account URL; never invent one
  *   features     -> named parts of the work, shown as a grid
+ *   embed        -> an interactive tool served from /public
  *   gallery      -> real screenshots or photographs only
  *   resources    -> real, working links only
  *   image        -> replace `art` or add a real project image (see public/art)
@@ -28,6 +29,7 @@
 export type InitiativeSlug =
   | "loka"
   | "oona"
+  | "astria"
   | "stem-lab"
   | "sdoh-transformation";
 
@@ -55,6 +57,21 @@ export type Channel = {
   platform: string;
   /** Null until a real account URL is supplied — never invent one. */
   href: string | null;
+};
+
+/**
+ * An embedded tool, served from /public and framed so its own styling stays
+ * isolated from the site's.
+ */
+export type EmbedSlot = {
+  /** Path under /public, e.g. "/tools/thing/index.html". */
+  src: string;
+  /** Iframe title — it must describe the tool for screen readers. */
+  title: string;
+  heading: string;
+  description: string;
+  /** Rendered height in pixels. */
+  height: number;
 };
 
 /** A named part of what an initiative is building. */
@@ -102,6 +119,8 @@ export type Initiative = {
   channels: Channel[];
   /** Named parts of the work, shown as a grid. Hidden when empty. */
   features: Feature[];
+  /** An interactive tool embedded in the page. Hidden when null. */
+  embed: EmbedSlot | null;
   /** Real imagery only — never a mock-up presented as a screenshot. */
   gallery: GalleryItem[];
   /** A line above the gallery, e.g. what the imagery is and is not. */
@@ -148,6 +167,7 @@ export const initiatives: Initiative[] = [
       { platform: "TikTok", href: null },
     ],
     features: [],
+    embed: null,
     gallery: [],
     galleryNote: null,
     audience: [
@@ -187,6 +207,7 @@ export const initiatives: Initiative[] = [
     building: [
       "Oona is organised as one research lifecycle \u2014 design, collect, connect, understand, act \u2014 rather than a set of separate tools bolted together. The capabilities below are the suite that lifecycle is built from.",
     ],
+    embed: null,
     features: [
       {
         name: "Study",
@@ -282,28 +303,142 @@ export const initiatives: Initiative[] = [
     accent: "#f1a9ab", // the Oona mark's salmon
   },
   {
+    slug: "astria",
+    name: "Astria",
+    href: "/astria",
+    /**
+     * Written from the Astria project's own documentation (README.md and
+     * ASTRIA-PITCH-CONTEXT.md). The figures below are the ones that file
+     * marks VERIFIED against a primary source; keep the attributions.
+     */
+    purpose:
+      "Astria is a care-navigation platform for people leaving incarceration.",
+    cardSummary: "Care navigation for people leaving incarceration.",
+    status: null,
+    tagline: "Every point of care. One path forward.",
+    art: {
+      src: "/art/initiative-astria.svg",
+      alt: "Many separate paths converging on a single star",
+    },
+    image: null,
+    challenge: [
+      "In the first two weeks after release from prison, the risk of death is 12.7 times that of the general population (Binswanger et al., New England Journal of Medicine, 2007). Around 80% of people leaving incarceration have a chronic medical, psychiatric or substance use condition (ASPE Report to Congress, 2023).",
+      "Every health system in America is built around continuous enrollment, and this population churns \u2014 in and out of custody, on and off Medicaid, across counties and phone numbers. A health plan\u2019s responsibility ends at disenrollment. A clinic\u2019s ends when someone leaves the panel. A jail\u2019s ends at release. Each system is working correctly when it drops them.",
+    ],
+    hiddenSections: [],
+    video: null,
+    channels: [],
+    building: [
+      "Astria is the layer that does not drop them. It onboards someone before release from whatever records exist, assembles a care team around them, and keeps checking that the connection holds \u2014 at a cadence that relaxes as confidence grows and tightens the moment a signal breaks.",
+      "AI compresses the administrative work so a human can do relational work more often, never so a human does it less. AI never appears as a person: every message to a patient is sent by a named human who can be reached back.",
+    ],
+    features: [
+      {
+        name: "Onboard",
+        body: "Before release, from whatever records the facility already has.",
+      },
+      {
+        name: "Assemble",
+        body: "Match to a clinic of record, behavioral health, and the wider care team around them.",
+      },
+      {
+        name: "Hold on",
+        body: "Keep checking the connection survives \u2014 easing off as confidence grows, tightening the moment a signal breaks.",
+      },
+      {
+        name: "Argo",
+        body: "The AI system, with a human in the loop, that runs onboarding: extracts uploaded records, assembles the Medicaid application, matches providers and writes documentation.",
+      },
+      {
+        name: "Astria ID",
+        body: "A private, encrypted identifier that resolves one person across a booking number, a Medicaid ID and clinic record numbers. Not a health record, not a government identifier, and never visible to corrections, courts, probation or parole.",
+      },
+      {
+        name: "Care Promoter",
+        body: "A community health worker employed by Astria, hired from the population served where possible. The human the patient actually deals with.",
+      },
+      {
+        name: "Community network",
+        body: "Local programs \u2014 food, housing, transport, recovery \u2014 on the same platform, so a plan is built from what is genuinely nearby and open.",
+      },
+    ],
+    embed: null,
+    gallery: [],
+    galleryNote: null,
+    audience: [
+      "County health departments, health systems and reentry programs.",
+      "And the people the platform is for: anyone leaving jail or prison whose care has to survive the transition.",
+    ],
+    resources: [],
+    accent: "#4776e6", // Celestial, from the Astria brand tokens
+  },
+  {
     slug: "stem-lab",
     name: "STEM Lab",
     href: "/stem-lab",
-    purpose: null, // APPROVED COPY REQUIRED
-    cardSummary: null, // APPROVED COPY REQUIRED
-    status: null, // OPTIONAL
-    tagline: null, // OPTIONAL
+    /**
+     * Framing supplied by AIMCORP. The embedded tool is the real Equilibrium
+     * Bench, served from /public/tools. The pitch deck under resources is the
+     * supplied PDF — its contents have not been transcribed into this page.
+     */
+    purpose:
+      "STEM Lab builds teaching tools \u2014 digital and tactile \u2014 to improve how K\u201312 science is taught and what students take away from it.",
+    cardSummary: "Teaching tools, digital and tactile, for K\u201312 classrooms.",
+    status: null,
+    tagline: null,
     art: {
       src: "/art/initiative-stem-lab.svg",
       alt: "Abstract connected node lattice representing the STEM Lab initiative",
     },
     image: null,
-    challenge: null,
-    building: null,
-    audience: null,
+    challenge: [
+      "Teachers are asked to make abstract science concrete with whatever is already in the room. The ideas students struggle with most are often the ones that cannot be seen directly \u2014 and those are the ones that end up flattened into a diagram on a worksheet.",
+    ],
     hiddenSections: [],
     video: null,
     channels: [],
-    features: [],
+    building: [
+      "Two kinds of tools for the same lesson. Software, where a simulation can do the work of showing what is happening. And totes \u2014 physical kits of materials and the teaching guide that goes with them, which go to a classroom and stay there.",
+    ],
+    features: [
+      {
+        name: "Digital interactives",
+        body: "Browser-based tools a teacher opens from a link. Nothing to install, no account to make.",
+      },
+      {
+        name: "Classroom totes",
+        body: "Tactile kits: the materials for an activity, packed with the guide for teaching it.",
+      },
+      {
+        name: "Several representations at once",
+        body: "The interactive below shows the particulate, macroscopic and symbolic views together, so students can connect what molecules do to what they would see and to the maths.",
+      },
+      {
+        name: "Built against real units",
+        body: "Tools target what is actually taught. The first is built for Honors and AP Chemistry Unit 7.",
+      },
+    ],
+    embed: {
+      src: "/tools/equilibrium-bench/index.html",
+      title: "Equilibrium Bench \u2014 an interactive chemistry simulation",
+      heading: "Equilibrium Bench",
+      description:
+        "Disturb a reaction at equilibrium and watch it respond three ways at once: the molecules, what you would see in the lab, and the maths of Q and K.",
+      height: 980,
+    },
     gallery: [],
     galleryNote: null,
-    resources: [],
+    audience: [
+      "K\u201312 science teachers, and the students in their classrooms.",
+      "Schools and programs looking for classroom materials they can pick up and use as they are.",
+    ],
+    resources: [
+      {
+        label: "STEM Lab pitch deck",
+        href: "/docs/aimcorp-stem-lab-pitchdeck.pdf",
+        description: "PDF",
+      },
+    ],
     accent: "#a39cff",
   },
   {
@@ -338,6 +473,7 @@ export const initiatives: Initiative[] = [
       "ED Care Closet, the first project under this initiative, is a working prototype that turns that closet into a clinical workflow: a screening result qualifies a patient for a kit, a nurse orders it, a volunteer picks and scans it, the delivery is confirmed, and the intervention is written back to the record as a completed procedure.",
       "It is built FHIR-native on HL7 FHIR R4 and designed to be SMART-on-FHIR compatible, so the same workflow can move onto Epic or another EHR without being rebuilt. Patient, Encounter and Observation carry the clinical context and the screening result; ServiceRequest carries the order; Task carries the volunteer\u2019s work; Procedure carries the documentation back.",
     ],
+    embed: null,
     features: [
       {
         name: "Screening to qualification",

@@ -7,13 +7,17 @@ export type NavItem = { href: string; label: string };
 export const primaryNav: NavItem[] = [
   { href: "/loka", label: "Loka" },
   { href: "/oona", label: "Oona" },
+  { href: "/astria", label: "Astria" },
   { href: "/stem-lab", label: "STEM Lab" },
-  { href: "/sdoh-transformation", label: "SDoH Transformation" },
+  { href: "/sdoh-transformation", label: "SDoH" },
+  { href: "/outreach", label: "Outreach" },
   { href: "/services", label: "Services" },
 ];
 
+const nonInitiative = new Set(["/services", "/outreach"]);
+
 export const footerInitiatives: NavItem[] = primaryNav.filter(
-  (item) => item.href !== "/services",
+  (item) => !nonInitiative.has(item.href),
 );
 
 export const footerOrganisation: NavItem[] = [
